@@ -6,26 +6,26 @@ using System.Windows.Forms;
 namespace AdmissionSystem.UI
 {
     /// <summary>
-    /// Современный UI helper с уникальной темной темой и градиентами
+    /// Современный UI helper с уникальной светлой темой Ocean Blue & Sunset Orange и градиентами
     /// </summary>
     public static class ModernUIHelper
     {
-        // Темная цветовая схема
-        public static readonly Color DarkBackground = ColorTranslator.FromHtml("#0a0e27");
-        public static readonly Color CardBackground = ColorTranslator.FromHtml("#1a1d3a");
-        public static readonly Color SidebarBackground = ColorTranslator.FromHtml("#16192e");
+        // Светлая цветовая схема Ocean Blue & Sunset Orange
+        public static readonly Color DarkBackground = ColorTranslator.FromHtml("#e8f4f8");
+        public static readonly Color CardBackground = ColorTranslator.FromHtml("#ffffff");
+        public static readonly Color SidebarBackground = ColorTranslator.FromHtml("#b8dde8");
 
         // Акцентные цвета
-        public static readonly Color PrimaryAccent = ColorTranslator.FromHtml("#6c5ce7");    // Фиолетовый
-        public static readonly Color SecondaryAccent = ColorTranslator.FromHtml("#00cec9");  // Бирюзовый
-        public static readonly Color SuccessColor = ColorTranslator.FromHtml("#00b894");     // Зеленый
-        public static readonly Color DangerColor = ColorTranslator.FromHtml("#ff7675");      // Красный
-        public static readonly Color WarningColor = ColorTranslator.FromHtml("#fdcb6e");     // Желтый
+        public static readonly Color PrimaryAccent = ColorTranslator.FromHtml("#ff6b35");    // Оранжевый
+        public static readonly Color SecondaryAccent = ColorTranslator.FromHtml("#004e89");  // Темно-синий
+        public static readonly Color SuccessColor = ColorTranslator.FromHtml("#06a77d");     // Зеленый
+        public static readonly Color DangerColor = ColorTranslator.FromHtml("#d7263d");      // Красный
+        public static readonly Color WarningColor = ColorTranslator.FromHtml("#f77f00");     // Оранжевый
 
         // Текст
-        public static readonly Color TextPrimary = ColorTranslator.FromHtml("#ffffff");
-        public static readonly Color TextSecondary = ColorTranslator.FromHtml("#b2bec3");
-        public static readonly Color TextMuted = ColorTranslator.FromHtml("#636e72");
+        public static readonly Color TextPrimary = ColorTranslator.FromHtml("#1b1b1e");
+        public static readonly Color TextSecondary = ColorTranslator.FromHtml("#4a4a4a");
+        public static readonly Color TextMuted = ColorTranslator.FromHtml("#7a7a7a");
 
         /// <summary>
         /// Создает стильную кнопку с градиентом
@@ -160,8 +160,8 @@ namespace AdmissionSystem.UI
             {
                 using (var brush = new LinearGradientBrush(
                     sidebar.ClientRectangle,
-                    ColorTranslator.FromHtml("#16192e"),
-                    ColorTranslator.FromHtml("#0a0e27"),
+                    ColorTranslator.FromHtml("#b8dde8"),
+                    ColorTranslator.FromHtml("#90c8dc"),
                     LinearGradientMode.Vertical))
                 {
                     e.Graphics.FillRectangle(brush, sidebar.ClientRectangle);
@@ -190,7 +190,7 @@ namespace AdmissionSystem.UI
             };
 
             button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#2d3561");
+            button.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#d0e8f2");
 
             return button;
         }
@@ -231,7 +231,7 @@ namespace AdmissionSystem.UI
             dgv.DefaultCellStyle.SelectionForeColor = TextPrimary;
             dgv.DefaultCellStyle.Padding = new Padding(10, 5, 10, 5);
 
-            dgv.GridColor = ColorTranslator.FromHtml("#2d3561");
+            dgv.GridColor = ColorTranslator.FromHtml("#c0dce8");
         }
 
         /// <summary>
@@ -266,7 +266,7 @@ namespace AdmissionSystem.UI
             {
                 Location = location,
                 Size = new Size(width, 1),
-                BackColor = ColorTranslator.FromHtml("#2d3561")
+                BackColor = ColorTranslator.FromHtml("#c0dce8")
             };
         }
 
@@ -418,7 +418,7 @@ namespace AdmissionSystem.UI
             // Эффект при наведении
             card.MouseEnter += (s, e) =>
             {
-                card.BackColor = ColorTranslator.FromHtml("#21254d");
+                card.BackColor = ColorTranslator.FromHtml("#f5f9fb");
                 card.Refresh();
             };
 

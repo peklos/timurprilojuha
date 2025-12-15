@@ -50,7 +50,7 @@ namespace AdmissionSystem.Forms
             {
                 Text = isEditMode ? "РЕДАКТИРОВАНИЕ СПЕЦИАЛЬНОСТИ" : "ДОБАВЛЕНИЕ СПЕЦИАЛЬНОСТИ",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
-                ForeColor = ColorTranslator.FromHtml("#4caf50"),
+                ForeColor = ColorTranslator.FromHtml("#06a77d"),
                 Size = new Size(450, 40),
                 Location = new Point(25, yPosition),
                 TextAlign = ContentAlignment.MiddleCenter
@@ -117,7 +117,7 @@ namespace AdmissionSystem.Forms
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 Size = new Size(200, 45),
                 Location = new Point(25, yPosition),
-                BackColor = ColorTranslator.FromHtml("#4caf50"),
+                BackColor = ColorTranslator.FromHtml("#06a77d"),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand
@@ -131,7 +131,7 @@ namespace AdmissionSystem.Forms
                 Font = new Font("Segoe UI", 11, FontStyle.Bold),
                 Size = new Size(200, 45),
                 Location = new Point(275, yPosition),
-                BackColor = ColorTranslator.FromHtml("#757575"),
+                BackColor = ColorTranslator.FromHtml("#7a7a7a"),
                 ForeColor = Color.White,
                 FlatStyle = FlatStyle.Flat,
                 Cursor = Cursors.Hand

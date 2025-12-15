@@ -39,7 +39,7 @@ namespace AdmissionSystem.Forms
                 using (var brush = new LinearGradientBrush(
                     this.ClientRectangle,
                     ModernUIHelper.DarkBackground,
-                    ColorTranslator.FromHtml("#16192e"),
+                    ColorTranslator.FromHtml("#b8dde8"),
                     90F))
                 {
                     e.Graphics.FillRectangle(brush, this.ClientRectangle);
@@ -219,7 +219,7 @@ namespace AdmissionSystem.Forms
                 new Point(50, 555),
                 new Size(600, 50),
                 ModernUIHelper.SuccessColor,
-                ColorTranslator.FromHtml("#00a67d")
+                ColorTranslator.FromHtml("#06a77d")
             );
             btnRegister.Click += BtnRegister_Click;
 
@@ -235,7 +235,7 @@ namespace AdmissionSystem.Forms
                 Cursor = Cursors.Hand
             };
             btnCancel.FlatAppearance.BorderSize = 0;
-            btnCancel.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#2d3561");
+            btnCancel.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#d0e8f2");
             btnCancel.Click += (s, e) => this.Close();
 
             // Добавление элементов на карточку

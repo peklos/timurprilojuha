@@ -105,7 +105,7 @@ namespace AdmissionSystem.Forms
                 Cursor = Cursors.Hand
             };
             btnLogout.FlatAppearance.BorderSize = 0;
-            btnLogout.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#2d3561");
+            btnLogout.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#d0e8f2");
             btnLogout.Click += (s, e) =>
             {
                 this.Close();
@@ -207,7 +207,7 @@ namespace AdmissionSystem.Forms
                 new Point(0, 10),
                 new Size(200, 50),
                 ModernUIHelper.SuccessColor,
-                ColorTranslator.FromHtml("#00a67d")
+                ColorTranslator.FromHtml("#06a77d")
             );
             btnApprove.Click += (s, e) => ChangeApplicationStatus("Одобрено");
 
@@ -216,7 +216,7 @@ namespace AdmissionSystem.Forms
                 new Point(210, 10),
                 new Size(200, 50),
                 ModernUIHelper.DangerColor,
-                ColorTranslator.FromHtml("#e66565")
+                ColorTranslator.FromHtml("#d7263d")
             );
             btnReject.Click += (s, e) => ChangeApplicationStatus("Отклонено");
 
@@ -224,8 +224,8 @@ namespace AdmissionSystem.Forms
                 "УДАЛИТЬ",
                 new Point(420, 10),
                 new Size(200, 50),
-                ColorTranslator.FromHtml("#636e72"),
-                ColorTranslator.FromHtml("#535c62")
+                ColorTranslator.FromHtml("#7a7a7a"),
+                ColorTranslator.FromHtml("#6a6a6a")
             );
             btnDelete.Click += (s, e) => DeleteApplication();
 
@@ -234,7 +234,7 @@ namespace AdmissionSystem.Forms
                 new Point(630, 10),
                 new Size(200, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRefresh.Click += (s, e) => LoadApplicationsCards();
 
@@ -296,7 +296,7 @@ namespace AdmissionSystem.Forms
                 new Point(0, 10),
                 new Size(220, 50),
                 ModernUIHelper.SuccessColor,
-                ColorTranslator.FromHtml("#00a67d")
+                ColorTranslator.FromHtml("#06a77d")
             );
             btnAdd.Click += (s, e) => AddSpecialty();
 
@@ -305,7 +305,7 @@ namespace AdmissionSystem.Forms
                 new Point(240, 10),
                 new Size(220, 50),
                 ModernUIHelper.WarningColor,
-                ColorTranslator.FromHtml("#f4c05e")
+                ColorTranslator.FromHtml("#f77f00")
             );
             btnEdit.Click += (s, e) => EditSpecialty();
 
@@ -314,7 +314,7 @@ namespace AdmissionSystem.Forms
                 new Point(480, 10),
                 new Size(220, 50),
                 ModernUIHelper.DangerColor,
-                ColorTranslator.FromHtml("#e66565")
+                ColorTranslator.FromHtml("#d7263d")
             );
             btnDelete.Click += (s, e) => DeleteSpecialty();
 
@@ -323,7 +323,7 @@ namespace AdmissionSystem.Forms
                 new Point(720, 10),
                 new Size(220, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRefresh.Click += (s, e) => LoadSpecialties();
 
@@ -370,7 +370,7 @@ namespace AdmissionSystem.Forms
                 new Point(0, 10),
                 new Size(220, 50),
                 ModernUIHelper.DangerColor,
-                ColorTranslator.FromHtml("#e66565")
+                ColorTranslator.FromHtml("#d7263d")
             );
             btnDelete.Click += (s, e) => DeleteUser();
 
@@ -379,7 +379,7 @@ namespace AdmissionSystem.Forms
                 new Point(240, 10),
                 new Size(220, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRefresh.Click += (s, e) => LoadUsers();
 
@@ -502,7 +502,7 @@ namespace AdmissionSystem.Forms
                         }
 
                         // Выделяем текущую карточку
-                        clickedCard.BackColor = ColorTranslator.FromHtml("#21254d");
+                        clickedCard.BackColor = ColorTranslator.FromHtml("#f5f9fb");
                         clickedCard.Refresh();
                         selectedApplicationCard = clickedCard;
 

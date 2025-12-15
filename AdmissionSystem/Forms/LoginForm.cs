@@ -196,7 +196,7 @@ namespace AdmissionSystem.Forms
                 new Point(80, 415),
                 new Size(440, 50),
                 ModernUIHelper.PrimaryAccent,
-                ColorTranslator.FromHtml("#5f4dd4")
+                ColorTranslator.FromHtml("#e85d24")
             );
             btnLogin.Click += BtnLogin_Click;
 
@@ -206,7 +206,7 @@ namespace AdmissionSystem.Forms
                 new Point(80, 480),
                 new Size(440, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRegister.Click += BtnRegister_Click;
 
@@ -249,8 +249,8 @@ namespace AdmissionSystem.Forms
             // Рисуем градиент на левой панели
             using (var brush = new LinearGradientBrush(
                 panelLeft.ClientRectangle,
-                ColorTranslator.FromHtml("#6c5ce7"),
-                ColorTranslator.FromHtml("#0984e3"),
+                ColorTranslator.FromHtml("#ff6b35"),
+                ColorTranslator.FromHtml("#004e89"),
                 45F))
             {
                 e.Graphics.FillRectangle(brush, panelLeft.ClientRectangle);

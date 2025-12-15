@@ -99,7 +99,7 @@ namespace AdmissionSystem.Forms
                 Cursor = Cursors.Hand
             };
             btnLogout.FlatAppearance.BorderSize = 0;
-            btnLogout.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#2d3561");
+            btnLogout.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#d0e8f2");
             btnLogout.Click += (s, e) =>
             {
                 this.Close();
@@ -173,7 +173,7 @@ namespace AdmissionSystem.Forms
                 new Point(0, 10),
                 new Size(280, 50),
                 ModernUIHelper.PrimaryAccent,
-                ColorTranslator.FromHtml("#5f4dd4")
+                ColorTranslator.FromHtml("#e85d24")
             );
             btnSubmit.Click += (s, e) => SubmitApplication();
 
@@ -182,7 +182,7 @@ namespace AdmissionSystem.Forms
                 new Point(300, 10),
                 new Size(220, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRefresh.Click += (s, e) => LoadSpecialties();
 
@@ -253,7 +253,7 @@ namespace AdmissionSystem.Forms
                 new Point(0, 10),
                 new Size(220, 50),
                 ModernUIHelper.DangerColor,
-                ColorTranslator.FromHtml("#e66565")
+                ColorTranslator.FromHtml("#d7263d")
             );
             btnDelete.Click += (s, e) => DeleteApplication();
 
@@ -262,7 +262,7 @@ namespace AdmissionSystem.Forms
                 new Point(240, 10),
                 new Size(220, 50),
                 ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnRefreshCards.Click += (s, e) => LoadApplicationsCards();
 
@@ -478,7 +478,7 @@ namespace AdmissionSystem.Forms
             Panel selectedCard = null;
             foreach (Control control in cardsFlowPanel.Controls)
             {
-                if (control is Panel panel && panel.BackColor == ColorTranslator.FromHtml("#21254d"))
+                if (control is Panel panel && panel.BackColor == ColorTranslator.FromHtml("#f5f9fb"))
                 {
                     selectedCard = panel;
                     break;

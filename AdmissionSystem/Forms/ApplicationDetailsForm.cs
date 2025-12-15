@@ -25,7 +25,7 @@ namespace AdmissionSystem.Forms
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.BackColor = ColorTranslator.FromHtml("#0a0e27");
+            this.BackColor = ColorTranslator.FromHtml("#e8f4f8");
             this.Padding = new Padding(20);
 
             // Заголовок
@@ -103,7 +103,7 @@ namespace AdmissionSystem.Forms
                 new Point(200, 20),
                 new Size(160, 45),
                 UI.ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#00b5ad")
+                ColorTranslator.FromHtml("#003d6b")
             );
             btnClose.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
 
@@ -115,7 +115,7 @@ namespace AdmissionSystem.Forms
                     new Point(20, 20),
                     new Size(160, 45),
                     UI.ModernUIHelper.SuccessColor,
-                    ColorTranslator.FromHtml("#00a67d")
+                    ColorTranslator.FromHtml("#06a77d")
                 );
                 btnApprove.Click += (s, e) => ApproveApplication();
 
@@ -124,7 +124,7 @@ namespace AdmissionSystem.Forms
                     new Point(380, 20),
                     new Size(160, 45),
                     UI.ModernUIHelper.DangerColor,
-                    ColorTranslator.FromHtml("#e66565")
+                    ColorTranslator.FromHtml("#d7263d")
                 );
                 btnReject.Click += (s, e) => RejectApplication();
 
