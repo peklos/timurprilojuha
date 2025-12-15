@@ -183,8 +183,8 @@ namespace AdmissionSystem.UI
                 Size = new Size(250, 55),
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
-                ForeColor = isActive ? TextPrimary : TextSecondary,
-                BackColor = isActive ? ColorTranslator.FromHtml("#6c5ce7") : Color.Transparent,
+                ForeColor = isActive ? Color.White : TextSecondary,
+                BackColor = isActive ? PrimaryAccent : Color.Transparent,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Cursor = Cursors.Hand
             };
