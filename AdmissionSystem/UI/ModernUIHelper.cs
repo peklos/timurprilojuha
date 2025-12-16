@@ -2,30 +2,31 @@ using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms;
+using LibrarySystem.Models;
 
-namespace AdmissionSystem.UI
+namespace LibrarySystem.UI
 {
     /// <summary>
-    /// Современный UI helper с уникальной светлой темой Ocean Blue & Sunset Orange и градиентами
+    /// Современный UI helper со светлой темой
     /// </summary>
     public static class ModernUIHelper
     {
-        // Светлая цветовая схема Ocean Blue & Sunset Orange
-        public static readonly Color DarkBackground = ColorTranslator.FromHtml("#e8f4f8");
-        public static readonly Color CardBackground = ColorTranslator.FromHtml("#ffffff");
-        public static readonly Color SidebarBackground = ColorTranslator.FromHtml("#b8dde8");
+    // Библиотечная тёплая цветовая схема
+    public static readonly Color DarkBackground = ColorTranslator.FromHtml("#f5f0ea"); // светло-бежевый фон
+    public static readonly Color CardBackground = ColorTranslator.FromHtml("#ffffff");
+    public static readonly Color SidebarBackground = ColorTranslator.FromHtml("#efe6dc"); // бежевый для сайдбара
 
-        // Акцентные цвета
-        public static readonly Color PrimaryAccent = ColorTranslator.FromHtml("#ff6b35");    // Оранжевый
-        public static readonly Color SecondaryAccent = ColorTranslator.FromHtml("#004e89");  // Темно-синий
-        public static readonly Color SuccessColor = ColorTranslator.FromHtml("#06a77d");     // Зеленый
-        public static readonly Color DangerColor = ColorTranslator.FromHtml("#d7263d");      // Красный
-        public static readonly Color WarningColor = ColorTranslator.FromHtml("#f77f00");     // Оранжевый
+    // Акцентные цвета (дерево/акценты)
+    public static readonly Color PrimaryAccent = ColorTranslator.FromHtml("#8b5e3c");    // коричневый
+    public static readonly Color SecondaryAccent = ColorTranslator.FromHtml("#b99a72");  // мягкий акцент
+    public static readonly Color SuccessColor = ColorTranslator.FromHtml("#3a6b35");     // зелёный для успеха
+    public static readonly Color DangerColor = ColorTranslator.FromHtml("#dc3545");      // красный
+    public static readonly Color WarningColor = ColorTranslator.FromHtml("#ffc107");     // желтый
 
-        // Текст
-        public static readonly Color TextPrimary = ColorTranslator.FromHtml("#1b1b1e");
-        public static readonly Color TextSecondary = ColorTranslator.FromHtml("#4a4a4a");
-        public static readonly Color TextMuted = ColorTranslator.FromHtml("#7a7a7a");
+    // Текст
+    public static readonly Color TextPrimary = ColorTranslator.FromHtml("#2b2b2b");
+    public static readonly Color TextSecondary = ColorTranslator.FromHtml("#6b5a4a");
+    public static readonly Color TextMuted = ColorTranslator.FromHtml("#9e8f7f");
 
         /// <summary>
         /// Создает стильную кнопку с градиентом
@@ -160,8 +161,8 @@ namespace AdmissionSystem.UI
             {
                 using (var brush = new LinearGradientBrush(
                     sidebar.ClientRectangle,
-                    ColorTranslator.FromHtml("#b8dde8"),
-                    ColorTranslator.FromHtml("#90c8dc"),
+                    ColorTranslator.FromHtml("#16192e"),
+                    ColorTranslator.FromHtml("#0a0e27"),
                     LinearGradientMode.Vertical))
                 {
                     e.Graphics.FillRectangle(brush, sidebar.ClientRectangle);
@@ -169,6 +170,35 @@ namespace AdmissionSystem.UI
             };
 
             return sidebar;
+        }
+
+        /// <summary>
+        /// Создает верхнюю панель навигации (топбар)
+        /// </summary>
+        public static Panel CreateTopbar(Size size)
+        {
+            var topbar = new Panel
+            {
+                Location = new Point(0, 0),
+                Size = new Size(size.Width, size.Height),
+                BackColor = SidebarBackground,
+                Dock = DockStyle.Top
+            };
+
+            // Градиент на топбаре
+            topbar.Paint += (s, e) =>
+            {
+                using (var brush = new LinearGradientBrush(
+                    topbar.ClientRectangle,
+                    ColorTranslator.FromHtml("#efe6dc"),
+                    ColorTranslator.FromHtml("#f5f0ea"),
+                    LinearGradientMode.Horizontal))
+                {
+                    e.Graphics.FillRectangle(brush, topbar.ClientRectangle);
+                }
+            };
+
+            return topbar;
         }
 
         /// <summary>
@@ -183,14 +213,14 @@ namespace AdmissionSystem.UI
                 Size = new Size(250, 55),
                 FlatStyle = FlatStyle.Flat,
                 Font = new Font("Segoe UI", 12, FontStyle.Regular),
-                ForeColor = isActive ? Color.White : TextSecondary,
-                BackColor = isActive ? PrimaryAccent : Color.Transparent,
+                ForeColor = isActive ? TextPrimary : TextSecondary,
+                BackColor = isActive ? ColorTranslator.FromHtml("#6c5ce7") : Color.Transparent,
                 TextAlign = ContentAlignment.MiddleLeft,
                 Cursor = Cursors.Hand
             };
 
             button.FlatAppearance.BorderSize = 0;
-            button.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#d0e8f2");
+            button.FlatAppearance.MouseOverBackColor = ColorTranslator.FromHtml("#2d3561");
 
             return button;
         }
@@ -231,7 +261,7 @@ namespace AdmissionSystem.UI
             dgv.DefaultCellStyle.SelectionForeColor = TextPrimary;
             dgv.DefaultCellStyle.Padding = new Padding(10, 5, 10, 5);
 
-            dgv.GridColor = ColorTranslator.FromHtml("#c0dce8");
+            dgv.GridColor = ColorTranslator.FromHtml("#2d3561");
         }
 
         /// <summary>
@@ -266,14 +296,14 @@ namespace AdmissionSystem.UI
             {
                 Location = location,
                 Size = new Size(width, 1),
-                BackColor = ColorTranslator.FromHtml("#c0dce8")
+                BackColor = ColorTranslator.FromHtml("#2d3561")
             };
         }
 
         /// <summary>
-        /// Создает карточку заявления
+        /// Создает карточку заявки на книгу
         /// </summary>
-        public static Panel CreateApplicationCard(Models.Application app, EventHandler onClick = null)
+        public static Panel CreateApplicationCard(BookRequest app, EventHandler onClick = null)
         {
             var card = new Panel
             {
@@ -324,11 +354,11 @@ namespace AdmissionSystem.UI
                     Color.FromArgb(40, 0, 0, 0), 5, ButtonBorderStyle.None);
             };
 
-            // ФИО (крупно)
-            string fullName = app.FullName ?? "Не указано";
-            Label lblName = new Label
+            // Название книги (крупно)
+            string title = string.IsNullOrWhiteSpace(app.BookTitle) ? "Не указано" : app.BookTitle;
+            Label lblTitle = new Label
             {
-                Text = fullName.Length > 25 ? fullName.Substring(0, 22) + "..." : fullName,
+                Text = title.Length > 30 ? title.Substring(0, 27) + "..." : title,
                 Font = new Font("Segoe UI", 12, FontStyle.Bold),
                 ForeColor = TextPrimary,
                 Location = new Point(10, 10),
@@ -336,11 +366,12 @@ namespace AdmissionSystem.UI
                 BackColor = Color.Transparent
             };
 
-            // Специальность
-            string specialtyName = app.SpecialtyName ?? "Не указана";
-            Label lblSpecialty = new Label
+            // Жанр и год
+            string genre = string.IsNullOrWhiteSpace(app.Genre) ? "Не указан" : app.Genre;
+            string year = app.Year > 0 ? app.Year.ToString() : "";
+            Label lblGenre = new Label
             {
-                Text = "Специальность: " + (specialtyName.Length > 25 ? specialtyName.Substring(0, 22) + "..." : specialtyName),
+                Text = $"Жанр: {genre}" + (string.IsNullOrEmpty(year) ? "" : $" | {year}"),
                 Font = new Font("Segoe UI", 9),
                 ForeColor = TextSecondary,
                 Location = new Point(10, 45),
@@ -348,14 +379,38 @@ namespace AdmissionSystem.UI
                 BackColor = Color.Transparent
             };
 
-            // Балл
-            Label lblScore = new Label
+            // Автор
+            Label lblAuthor = new Label
             {
-                Text = $"Балл: {app.ExamScore:F2}",
+                Text = $"Автор: {app.Author}",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = TextSecondary,
                 Location = new Point(10, 70),
-                Size = new Size(150, 25),
+                Size = new Size(310, 25),
+                BackColor = Color.Transparent
+            };
+
+            // Категория
+            string specialtyName = app.CategoryName ?? "Не указана";
+            Label lblSpecialty = new Label
+            {
+                Text = "Категория: " + (specialtyName.Length > 25 ? specialtyName.Substring(0, 22) + "..." : specialtyName),
+                Font = new Font("Segoe UI", 9),
+                ForeColor = TextMuted,
+                Location = new Point(10, 95),
+                Size = new Size(310, 25),
+                BackColor = Color.Transparent
+            };
+
+            // ISBN
+            string isbn = app.ISBN ?? "";
+            Label lblISBN = new Label
+            {
+                Text = $"ISBN: {isbn}",
+                Font = new Font("Segoe UI", 9),
+                ForeColor = TextMuted,
+                Location = new Point(10, 120),
+                Size = new Size(310, 25),
                 BackColor = Color.Transparent
             };
 
@@ -366,20 +421,7 @@ namespace AdmissionSystem.UI
                 Text = $"Дата: {submittedAt}",
                 Font = new Font("Segoe UI", 9),
                 ForeColor = TextMuted,
-                Location = new Point(10, 95),
-                Size = new Size(310, 25),
-                BackColor = Color.Transparent
-            };
-
-            // Паспортные данные
-            string passportSeries = app.PassportSeries ?? "";
-            string passportNumber = app.PassportNumber ?? "";
-            Label lblPassport = new Label
-            {
-                Text = $"Паспорт: {passportSeries} {passportNumber}",
-                Font = new Font("Segoe UI", 9),
-                ForeColor = TextMuted,
-                Location = new Point(10, 120),
+                Location = new Point(10, 145),
                 Size = new Size(310, 25),
                 BackColor = Color.Transparent
             };
@@ -397,11 +439,12 @@ namespace AdmissionSystem.UI
             };
 
             // Добавляем все элементы на карточку
-            card.Controls.Add(lblName);
+            card.Controls.Add(lblTitle);
+            card.Controls.Add(lblGenre);
+            card.Controls.Add(lblAuthor);
             card.Controls.Add(lblSpecialty);
-            card.Controls.Add(lblScore);
+            card.Controls.Add(lblISBN);
             card.Controls.Add(lblDate);
-            card.Controls.Add(lblPassport);
             card.Controls.Add(lblStatus);
 
             // Обработчик клика
@@ -418,7 +461,7 @@ namespace AdmissionSystem.UI
             // Эффект при наведении
             card.MouseEnter += (s, e) =>
             {
-                card.BackColor = ColorTranslator.FromHtml("#f5f9fb");
+                card.BackColor = ColorTranslator.FromHtml("#21254d");
                 card.Refresh();
             };
 

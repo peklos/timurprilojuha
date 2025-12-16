@@ -1,17 +1,17 @@
 using System;
 using System.Drawing;
 using System.Windows.Forms;
-using AdmissionSystem.Database;
-using AdmissionSystem.Models;
+using LibrarySystem.Database;
+using LibrarySystem.Models;
 
-namespace AdmissionSystem.Forms
+namespace LibrarySystem.Forms
 {
     public partial class ApplicationDetailsForm : Form
     {
-        private AdmissionSystem.Models.Application application;
+        private BookRequest application;
         private bool isAdminMode;
 
-        public ApplicationDetailsForm(AdmissionSystem.Models.Application app, bool isAdmin = false)
+        public ApplicationDetailsForm(BookRequest app, bool isAdmin = false)
         {
             application = app;
             isAdminMode = isAdmin;
@@ -20,18 +20,17 @@ namespace AdmissionSystem.Forms
 
         private void InitializeComponent()
         {
-            this.Size = new Size(600, 700);
-            this.Text = "Детали заявления";
+            this.Text = "Детали запроса на книгу";
             this.StartPosition = FormStartPosition.CenterScreen;
             this.FormBorderStyle = FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
-            this.BackColor = ColorTranslator.FromHtml("#e8f4f8");
+            this.BackColor = ColorTranslator.FromHtml("#0a0e27");
             this.Padding = new Padding(20);
 
             // Заголовок
             Label lblTitle = new Label
             {
-                Text = "ПОДРОБНАЯ ИНФОРМАЦИЯ О ЗАЯВЛЕНИИ",
+                Text = "ПОДРОБНАЯ ИНФОРМАЦИЯ О ЗАПРОСЕ НА КНИГУ",
                 Font = new Font("Segoe UI", 16, FontStyle.Bold),
                 ForeColor = UI.ModernUIHelper.TextPrimary,
                 Size = new Size(550, 40),
@@ -52,37 +51,29 @@ namespace AdmissionSystem.Forms
             int labelWidth = 150;
             int valueWidth = 350;
 
-            // ФИО
-            AddInfoRow(infoPanel, "ФИО:", application.FullName, ref yPos, labelWidth, valueWidth);
+            // Название книги
+            AddInfoRow(infoPanel, "Название книги:", application.BookTitle, ref yPos, labelWidth, valueWidth);
             
-            // Специальность
-            AddInfoRow(infoPanel, "Специальность:", application.SpecialtyName, ref yPos, labelWidth, valueWidth);
+            // Автор
+            AddInfoRow(infoPanel, "Автор:", application.Author, ref yPos, labelWidth, valueWidth);
+            // Жанр
+            AddInfoRow(infoPanel, "Жанр:", application.Genre, ref yPos, labelWidth, valueWidth);
+            // Год издания
+            AddInfoRow(infoPanel, "Год издания:", application.Year > 0 ? application.Year.ToString() : "", ref yPos, labelWidth, valueWidth);
             
-            // Дата рождения
-            AddInfoRow(infoPanel, "Дата рождения:", application.BirthDate.ToString("dd.MM.yyyy"), ref yPos, labelWidth, valueWidth);
+            // ISBN
+            AddInfoRow(infoPanel, "ISBN:", application.ISBN, ref yPos, labelWidth, valueWidth);
             
-            // Паспортные данные
-            AddInfoRow(infoPanel, "Паспорт:", $"{application.PassportSeries} {application.PassportNumber}", ref yPos, labelWidth, valueWidth);
+            // Категория
+            AddInfoRow(infoPanel, "Категория:", application.CategoryName, ref yPos, labelWidth, valueWidth);
             
-            // Адрес
-            AddInfoRow(infoPanel, "Адрес:", application.Address, ref yPos, labelWidth, valueWidth);
-            
-            // Телефон
-            AddInfoRow(infoPanel, "Телефон:", application.Phone, ref yPos, labelWidth, valueWidth);
-            
-            // Email
-            AddInfoRow(infoPanel, "Email:", application.Email, ref yPos, labelWidth, valueWidth);
-            
-            // Средний балл
-            AddInfoRow(infoPanel, "Средний балл:", application.ExamScore.ToString("F2"), ref yPos, labelWidth, valueWidth);
+            // Дата заявки
+            AddInfoRow(infoPanel, "Дата заявки:", application.SubmittedAt, ref yPos, labelWidth, valueWidth);
             
             // Статус
             Color statusColor = application.Status == "Одобрено" ? UI.ModernUIHelper.SuccessColor :
                                application.Status == "Отклонено" ? UI.ModernUIHelper.DangerColor : UI.ModernUIHelper.WarningColor;
             AddInfoRow(infoPanel, "Статус:", application.Status, ref yPos, labelWidth, valueWidth, statusColor);
-            
-            // Дата подачи
-            AddInfoRow(infoPanel, "Дата подачи:", application.SubmittedAt, ref yPos, labelWidth, valueWidth);
             
             // Заметки (только для админа)
             if (!string.IsNullOrEmpty(application.Notes) && isAdminMode)
@@ -103,7 +94,7 @@ namespace AdmissionSystem.Forms
                 new Point(200, 20),
                 new Size(160, 45),
                 UI.ModernUIHelper.SecondaryAccent,
-                ColorTranslator.FromHtml("#003d6b")
+                ColorTranslator.FromHtml("#00b5ad")
             );
             btnClose.Click += (s, e) => this.DialogResult = DialogResult.Cancel;
 
@@ -115,7 +106,7 @@ namespace AdmissionSystem.Forms
                     new Point(20, 20),
                     new Size(160, 45),
                     UI.ModernUIHelper.SuccessColor,
-                    ColorTranslator.FromHtml("#06a77d")
+                    ColorTranslator.FromHtml("#00a67d")
                 );
                 btnApprove.Click += (s, e) => ApproveApplication();
 
@@ -124,7 +115,7 @@ namespace AdmissionSystem.Forms
                     new Point(380, 20),
                     new Size(160, 45),
                     UI.ModernUIHelper.DangerColor,
-                    ColorTranslator.FromHtml("#d7263d")
+                    ColorTranslator.FromHtml("#e66565")
                 );
                 btnReject.Click += (s, e) => RejectApplication();
 
@@ -180,14 +171,14 @@ namespace AdmissionSystem.Forms
             {
                 try
                 {
-                    DatabaseHelper.UpdateApplicationStatus(application.Id, "Одобрено");
+                    DatabaseHelper.UpdateBookRequestStatus(application.Id, "Одобрено");
                     application.Status = "Одобрено";
                     this.DialogResult = DialogResult.OK;
                     this.Close();
                 }
                 catch (Exception)
                 {
-                    MessageBox.Show("Не удалось одобрить заявление", "Ошибка",
+                    MessageBox.Show("Не удалось одобрить заявку", "Ошибка",
                         MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
@@ -200,7 +191,7 @@ namespace AdmissionSystem.Forms
             {
                 try
                 {
-                    DatabaseHelper.UpdateApplicationStatus(application.Id, "Отклонено");
+                    DatabaseHelper.UpdateBookRequestStatus(application.Id, "Отклонено");
                     application.Status = "Отклонено";
                     this.DialogResult = DialogResult.OK;
                     this.Close();

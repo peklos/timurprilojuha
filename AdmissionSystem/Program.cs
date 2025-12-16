@@ -1,9 +1,9 @@
 using System;
 using System.Windows.Forms;
-using AdmissionSystem.Database;
-using AdmissionSystem.Forms;
+using LibrarySystem.Database;
+using LibrarySystem.Forms;
 
-namespace AdmissionSystem
+namespace LibrarySystem
 {
     internal static class Program
     {
